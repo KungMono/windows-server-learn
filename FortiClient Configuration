@@ -1,0 +1,19 @@
+# Configure the FortiClient VPN File
+
+# VPN Tunnel Name
+if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN") -ne $true) {  New-Item "HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN" -force -ea SilentlyContinue };
+
+# VPN Profile Description
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN' -Name 'Description' -Value 'CHKP_VPN' -PropertyType String -Force -ea SilentlyContinue;
+
+# Remote Gateway
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN' -Name 'Server' -Value '61.244.3.244:4443' -PropertyType String -Force -ea SilentlyContinue;
+
+# Prompt on login
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN' -Name 'promptusername' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue;
+
+# Client Certificate
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN' -Name 'promptcertificate' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+
+# Do not warn invalid server certificate
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Fortinet\FortiClient\Sslvpn\Tunnels\CHKP_VPN' -Name 'ServerCert' -Value '0' -PropertyType String -Force -ea SilentlyContinue;
