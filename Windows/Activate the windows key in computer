@@ -1,0 +1,4 @@
+# Configure Windows Key Activation
+$oemkey = ((Get-WmiObject -Query 'select * from SoftwareLicensingService').OA3xOriginalProductKey).ToString()
+slmgr /ipk $oemkey
+slmgr /ato
