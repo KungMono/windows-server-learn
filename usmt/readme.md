@@ -22,3 +22,12 @@ $result = dir .\$Env:UserName -Recurse | Measure-Object -Property length -Sum -M
 $result.sum/1gb
 $result.Maximum/1gb
 ```
+
+
+# 4 Restore Profile
+```
+# Check USMT in D:\
+# Remove Existing Profile First
+$input_username = read-host
+.\LoadState.exe /i:Config.xml C:\temp\MigrationStore\HK-C00000000361 /progress:Progress.log /l:LoadState.log /mu:fpcahk\$input_username:g08\$input_username
+```
