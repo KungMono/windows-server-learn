@@ -2,7 +2,11 @@
 https://pan-gp-client.s3.amazonaws.com/6.0.4-26/GlobalProtect64.msi
 $migdir = "C:\TEMP\MigrationStore\$env:COMPUTERNAME"
 $migdir
-.\scanstate.exe $migdir /i:Config.xml /o /vsc /ue:$env:COMPUTERNAME\default* /uel:90 /listfiles:$migdir\FilesMigrated.log /l:$migdir\scan.log /progress:$migdir\scan_progress.log /efs:abort /c
+# .\scanstate.exe $migdir /i:Config.xml /o /vsc /ue:$env:COMPUTERNAME\default* /uel:90 /listfiles:$migdir\FilesMigrated.log /l:$migdir\scan.log /progress:$migdir\scan_progress.log /efs:abort /c
+
+To include only Current Logon User from the FPCAHK domain, enter:
+.\scanstate.exe $migdir /i:Config.xml /o /vsc /ue:*\* /ui:fpcahk\$env:UserName /listfiles:$migdir\FilesMigrated.log /l:$migdir\scan.log /progress:$migdir\scan_progress.log /efs:abort /c
+
 
 Rename Computer
 Connect to Internal WiFi
