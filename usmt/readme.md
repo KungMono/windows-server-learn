@@ -15,11 +15,11 @@ Join G08 Network
 Login computer user local admin
 USMT > LoadState /MU switch 
 
-LoadState.exe /i:MigApp.xml /i:MigDocs.xml \server\share\migration\mystore
-/progress:Progress.log /l:LoadState.log /mu:contoso\user1:fabrikam\user1
-/mu:OldLocalUserName:NewDomain NewUserName
+$oldpcname = Read-Host -Prompt "Please input Old Computername"
+$migdir = "C:\TEMP\MigrationStore\$oldpcname"
+$inputuser = Read-Host -Prompt "Please input username"
+.\LoadState.exe /i:Config.xml $migdir /progress:Progress.log /l:LoadState.log /mu:fpcahk\\$inputuser:g08\\$inputuser
 
-LoadState.exe /i:Config.xml C:\Temp\MigStore /progress:Progress.log /l:LoadState.log /mu:fpcahk\user1:g08\user1
 
 
 $result = dir .\$Env:UserName -Recurse | Measure-Object -Property length -Sum -Maximum
